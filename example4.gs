@@ -18,23 +18,17 @@ function whenStatusChnagedToInProgress(issueKey) {
   var status_change_date = ""
   
   data.changelog.histories = data.changelog.histories.reverse()
-  for (var h in data.changelog.histories)
-  {
-    for (var hi in data.changelog.histories[h].items)
-    {
-      if (data.changelog.histories[h].items[hi].field == 'status' && data.changelog.histories[h].items[hi].toString == "In Progress")
-      {
+  for (var h in data.changelog.histories) {
+    for (var hi in data.changelog.histories[h].items) {
+      if (data.changelog.histories[h].items[hi].field == 'status' && data.changelog.histories[h].items[hi].toString == "In Progress") {
         noneFlag = true
         status_change_date = Utilities.formatDate(new Date(data.changelog.histories[h].created), "GMT", "MM/dd/yyyy")
         break
       }
     }
-    
-    if (noneFlag) 
-    {
+    if (noneFlag) {
       break
     }
-    
   }
   return status_change_date;
 }
